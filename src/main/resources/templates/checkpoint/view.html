@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="UTF-8">
+        <title>Checkpoint view</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/checkpoint/view.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            div {
+                text-align: center;
+                margin: auto;
+                display: inline;
+            }
+            button {
+                display: inline;
+            }
+            form {
+                display: inline;
+            }
+            table {
+                margin: auto;
+            }
+            button#buttonAdd {
+                font-size: 1.5em;
+                border-radius: 50px;
+                -moz-border-radius: 50px; /* firefox */
+                -webkit-border-radius: 50px; /* safari, chrome */
+            }
+        </style>
+    </head>
+    <body>
+        <h1>CHECKPOINTS</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1 col-md-offset-1">
+                    <form th:action="@{/checkpoint/add}" method="get">
+                        <button id="buttonAdd" class="btn btn-primary btn-block" type="submit">+</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div style="overflow-x: hidden;">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID Checkpoint</th>
+                        <th>Description</th>
+                        <th>Parent</th>
+                        <th>Pipeline</th>
+                        <th>Transaction Hash</th>
+                        <th>Content</th>
+
+                        <th width="200">Field 1</th>
+                        <th width="200">Field 2</th>
+                        <th width="200">Field 3</th>
+
+                        <th width="500">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${completecheckpoints.empty}">
+                        <td colspan="10">No Checkpoints Available</td>
+                    </tr>
+                    <tr th:each="completecheckpoint : ${completecheckpoints}">
+                        <td><span th:text="${completecheckpoint.idCheckpoint}">Id checkpoint</span></td>
+                        <td><span th:text="${completecheckpoint.description}">Description</span></td>
+                        <td><span th:text="${completecheckpoint.parent}">Parent</span></td>
+                        <td><span th:text="${completecheckpoint.pipeline}">Pipeline</span></td>
+                        <td><span th:text="${completecheckpoint.transactionhash}">Transaction Hash</span></td>
+                        <td><span th:text="${completecheckpoint.content}">Content</span></td>
+
+                        <td><span th:text="${completecheckpoint.field1}">Field 1</span></td>
+                        <td><span th:text="${completecheckpoint.field2}">Field 2</span></td>
+                        <td><span th:text="${completecheckpoint.field3}">Field 3</span></td>
+
+                        <td>
+                            <div class="row">
+                                <div>
+                                    <form action="#" name="removeCheckpoint" th:action="@{/checkpoint/remove}" th:object="${completecheckpoint}" class="form-horizontal" role="form" method="post">
+                                        <input type="hidden" name="idCheckpoint" th:value="${completecheckpoint.idCheckpoint}">
+                                        <input type="hidden" name="description" th:value="${completecheckpoint.description}">
+                                        <input type="hidden" name="transactionHash" th:value="${completecheckpoint.transactionhash}">
+                                        <input type="hidden" name="parent" th:value="${completecheckpoint.parent}">
+                                        <input type="hidden" name="pipeline" th:value="${completecheckpoint.pipeline}">
+                                        <input type="hidden" name="content" th:value="${completecheckpoint.content}">
+                                        <button type="submit" class="btn btn-primary btn-block">REMOVE</button>
+                                    </form>
+                                </div>
+
+                                <div>
+                                    <form action="#" name="editCheckpoint" th:action="@{/checkpoint/edit}" th:object="${completecheckpoint}" class="form-horizontal" role="form" method="get">
+                                        <input type="hidden" name="idCheckpoint" th:value="${completecheckpoint.idCheckpoint}">
+                                        <input type="hidden" name="description" th:value="${completecheckpoint.description}">
+                                        <input type="hidden" name="transactionHash" th:value="${completecheckpoint.transactionhash}">
+                                        <input type="hidden" name="parent" th:value="${completecheckpoint.parent}">
+                                        <input type="hidden" name="pipeline" th:value="${completecheckpoint.pipeline}">
+                                        <input type="hidden" name="content" th:value="${completecheckpoint.content}">
+                                        <input type="hidden" name="field1" th:value="${completecheckpoint.field1}">
+                                        <input type="hidden" name="field2" th:value="${completecheckpoint.field2}">
+                                        <input type="hidden" name="field3" th:value="${completecheckpoint.field3}">
+                                        <button type="submit" class="btn btn-primary btn-block">EDIT</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form th:action="@{/pipeline/view}" method="get">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">BACK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

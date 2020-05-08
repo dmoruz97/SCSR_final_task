@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pipeline edit</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/pipeline/edit.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            div {
+                text-align: center;
+                margin: auto;
+                display: inline;
+            }
+            button {
+                display: inline;
+            }
+            form {
+                display: inline;
+            }
+            table {
+                margin: auto;
+            }
+            input {
+                text-align: center;
+            }
+            span {
+                color: #FF0000;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>EDIT PIPELINE</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form action="#" th:action="@{/pipeline/edit}" th:object="${pipeline}" class="form-horizontal" role="form" method="post">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>ID Pipeline</h4>
+                                <input type="text" id="idPipeline" name="idPipeline" th:value="*{idPipeline}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Description</h4>
+                                <input type="text" id="description" name="description" th:field="*{description}" th:placeholder="*{description}" placeholder="Description" class="form-control" autofocus>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Transaction Hash</h4>
+                                <input type="text" id="transactionhash" name="transactionhash" th:value="*{transactionhash}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>User</h4>
+                                <input type="text" id="user" name="user" th:value="*{user}" readonly>
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-3">
+                                    <button type="submit" class="btn btn-primary btn-block">EDIT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <span th:text="${message}"></span>
+
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form th:action="@{/pipeline/view}" method="get">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">BACK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Dashboard</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/home/dashboard.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div>
+            <h1>RESERVED AREA OF <span th:text="${loggedUsername}"></span> (userID: <span th:text="${loggedId}"></span>)</h1>
+            <br>
+            <h2>Pipeline operations</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-3">
+                    <form action="#" th:action="@{/pipeline/view}" class="form-horizontal" role="form" method="get">
+                        <button type="submit" class="btn btn-primary btn-block">SHOW</button>
+                    </form>
+                    <br>
+                    <form action="#" th:action="@{/pipeline/add}" class="form-horizontal" role="form" method="get">
+                        <button type="submit" class="btn btn-primary btn-block">ADD</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div>
+            <h2>Blockchain operations</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-3">
+                        <form action="#" th:action="@{/blockchain}" class="form-horizontal" role="form" method="get">
+                            <button type="submit" class="btn btn-primary btn-block">SHOW TRANSACTIONS</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form action="#" th:action="@{/logout}" class="form-horizontal" role="form" method="post">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">LOGOUT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

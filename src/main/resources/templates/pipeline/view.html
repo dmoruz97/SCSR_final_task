@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pipeline view</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/pipeline/view.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            div {
+                text-align: center;
+                margin: auto;
+                display: inline;
+            }
+            button {
+                display: inline;
+            }
+            form {
+                display: inline;
+            }
+            table {
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>PIPELINES</h1>
+
+        <div class="container">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID Pipeline</th>
+                        <th>Description</th>
+                        <th>User</th>
+                        <th>Transaction Hash</th>
+                        <th width="350">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${pipelines.empty}">
+                        <td colspan="5">No Pipelines Available</td>
+                    </tr>
+                    <tr th:each="pipeline : ${pipelines}">
+                        <td><span th:text="${pipeline.idPipeline}">Id pipeline</span></td>
+                        <td><span th:text="${pipeline.description}">Description</span></td>
+                        <td><span th:text="${pipeline.user}">User</span></td>
+                        <td><span th:text="${pipeline.transactionhash}">Transaction Hash</span></td>
+                        <td>
+                            <div class="row">
+                                <div>
+                                    <form action="#" name="removePipeline" th:action="@{/pipeline/remove}" th:object="${pipeline}" class="form-horizontal" role="form" method="post">
+                                        <input type="hidden" name="idPipeline" th:value="${pipeline.idPipeline}">
+                                        <input type="hidden" name="description" th:value="${pipeline.description}">
+                                        <input type="hidden" name="transactionHash" th:value="${pipeline.transactionhash}">
+                                        <input type="hidden" name="user" th:value="${pipeline.user}">
+                                        <button type="submit" class="btn btn-primary btn-block">REMOVE</button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="#" name="editPipeline" th:action="@{/pipeline/edit}" th:object="${pipeline}" class="form-horizontal" role="form" method="get">
+                                        <input type="hidden" name="idPipeline" th:value="${pipeline.idPipeline}">
+                                        <input type="hidden" name="description" th:value="${pipeline.description}">
+                                        <input type="hidden" name="transactionHash" th:value="${pipeline.transactionhash}">
+                                        <input type="hidden" name="user" th:value="${pipeline.user}">
+                                        <button type="submit" class="btn btn-primary btn-block">EDIT</button>
+                                    </form>
+                                </div>
+                                <div>
+                                    <form action="#" name="explodePipeline" th:action="@{/checkpoint/viewTemp}" th:object="${pipeline}" class="form-horizontal" role="form" method="get">
+                                        <input type="hidden" name="idPipeline" th:value="${pipeline.idPipeline}">
+                                        <input type="hidden" name="description" th:value="${pipeline.description}">
+                                        <input type="hidden" name="transactionHash" th:value="${pipeline.transactionhash}">
+                                        <input type="hidden" name="user" th:value="${pipeline.user}">
+                                        <button type="submit" class="btn btn-primary btn-block">SHOW</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form th:action="@{/pipeline}" method="get">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">BACK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
