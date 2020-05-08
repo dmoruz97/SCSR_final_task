@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Checkpoint edit</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/pipeline/edit.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            div {
+                text-align: center;
+                margin: auto;
+                display: inline;
+            }
+            button {
+                display: inline;
+            }
+            form {
+                display: inline;
+            }
+            table {
+                margin: auto;
+            }
+            input {
+                text-align: center;
+            }
+            span {
+                color: #FF0000;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>EDIT CHECKPOINT</h1>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form action="#" th:action="@{/checkpoint/edit}" th:object="${completeCheckpoint}" class="form-horizontal" method="post" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>ID Checkpoint</h4>
+                                <input type="text" name="idCheckpoint" th:value="*{idCheckpoint}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Description</h4>
+                                <input type="text" name="description" th:field="*{description}" th:placeholder="*{description}" class="form-control" autofocus>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Transaction Hash</h4>
+                                <input type="text" name="transactionhash" th:value="*{transactionhash}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Parent</h4>
+                                <input type="text" name="parent" th:value="*{parent}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Pipeline</h4>
+                                <input type="text" name="pipeline" th:value="*{pipeline}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Content</h4>
+                                <input type="text" name="content" th:value="*{content}" readonly>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Field 1</h4>
+                                <input type="text" name="field1" th:field="*{field1}" th:placeholder="*{field1}" class="form-control">
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Field 2</h4>
+                                <input type="text" name="field2" th:field="*{field2}" th:placeholder="*{field2}" class="form-control">
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <h4>Field 3</h4>
+                                <input type="text" name="field3" th:field="*{field3}" th:placeholder="*{field3}" class="form-control">
+                            </div>
+                        </div>
+
+                        <br><br>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-3 col-md-offset-3">
+                                    <button type="submit" class="btn btn-primary btn-block">EDIT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <span th:text="${message}"></span>
+
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form th:action="@{/checkpoint/view}" method="get">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">BACK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

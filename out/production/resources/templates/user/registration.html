@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Registration Form</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/user/register.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <form th:action="@{/login}" method="get">
+            <button type="submit" class="btn btn-md btn-warning btn-block">Go To Login Page</button>
+        </form>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form action="#" th:action="@{/registration}" th:object="${user}" method="post" class="form-horizontal" role="form">
+                        <br><h2>Registration Form</h2><br>
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label for="username" class="validation-message"></label>
+                                <input id="username" type="text" th:field="*{username}" placeholder="Username" class="form-control" autofocus />
+                                <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label for="password" class="validation-message"></label>
+                                <input id="password" type="password" th:field="*{password}" placeholder="Password" class="form-control" />
+                                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-primary btn-block">REGISTER</button>
+                            </div>
+                        </div>
+
+                        <span th:text="${successMessage}"></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

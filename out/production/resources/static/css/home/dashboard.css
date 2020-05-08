@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+}
+div {
+    text-align: center;
+    margin: auto;
+    display: inline;
+}
+button {
+    display: inline;
+}
+form {
+    display: inline;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Add Checkpoint</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/checkpoint/add.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            div {
+                margin: auto;
+                text-align: center;
+            }
+            span {
+                color: #FF0000;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>INSERT A NEW CHECKPOINT</h2>
+            <br>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                    <form action="#" th:action="@{/checkpoint/add}" th:object="${checkpoint}" method="post" role="form" autocomplete="off">
+                        <input type="hidden" th:field="*{idCheckpoint}" name="idCheckpoint">
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label for="description" class="validation-message" th:errors="*{description}">Description</label>
+                                <input id="description" type="text" th:field="*{description}" name="description" placeholder="Insert checkpoint description" class="form-control" autofocus>
+                            </div>
+                        </div>
+
+                        <input type="hidden" th:field="*{transactionhash}" name="transactionhash">
+
+                        <!--
+                        <label for="parent" th:errors="*{parent}">Parent</label>
+                        <input id="parent" type="text" th:field="*{parent}" name="parent" placeholder="Insert checkpoint parent">
+                        -->
+                        <input type="hidden" th:field="*{parent}" name="parent">
+
+                        <input type="hidden" th:value="${id_pipeline}" name="pipeline">
+
+                        <input type="hidden" th:field="*{content}" name="content">
+
+                        <br><br>
+
+                        <div th:object="${cpcontent}">
+                            <input type="hidden" th:field="*{idCpContent}" name="idCpContent">
+
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <label for="field1" th:errors="*{field1}">Field 1</label>
+                                    <input id="field1" type="text" th:field="*{field1}" name="field1" placeholder="Insert checkpoint field 1" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <label for="field2" th:errors="*{field2}">Field 2</label>
+                                    <input id="field2" type="text" th:field="*{field2}" name="field2" placeholder="Insert checkpoint field 2" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9">
+                                    <label for="field3" th:errors="*{field3}">Field 3</label>
+                                    <input id="field3" type="text" th:field="*{field3}" name="field3" placeholder="Insert checkpoint field 3" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary btn-block">ADD</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                    <form th:action="@{/checkpoint/view}" class="form-horizontal" role="form" method="get">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">BACK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <span th:text="${message}"></span>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Add Pipeline</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/pipeline/add.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style type="text/css">
+            body {
+                text-align: center;
+            }
+            div {
+                margin: auto;
+                text-align: center;
+            }
+            span {
+                color: #FF0000;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>INSERT A NEW PIPELINE</h2>
+            <br>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                    <form action="#" th:action="@{/pipeline/add}" th:object="${pipeline}" method="post" class="form-horizontal" role="form">
+                        <input type="hidden" th:field="*{idPipeline}" name="idPipeline">
+
+                        <div class="form-group">
+                            <div class="col-sm-9">
+                                <label for="description" class="validation-message"></label>
+                                <input id="description" type="text" th:field="*{description}" name="description" placeholder="Insert a pipeline description" class="form-control" autofocus>
+                                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</span>
+                            </div>
+                        </div>
+
+                        <input type="hidden" th:field="*{transactionhash}" name="transactionhash">
+
+                        <input type="hidden" th:value="${id_user}" name="user">
+
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn btn-primary btn-block">ADD</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-3">
+                    <form th:action="@{/pipeline}" method="get" class="form-horizontal" role="form">
+                        <button type="submit" class="btn btn-md btn-warning btn-block">BACK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <span th:text="${message}"></span>
+    </body>
+</html>
